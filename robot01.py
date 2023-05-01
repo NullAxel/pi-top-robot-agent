@@ -98,6 +98,18 @@ def v2_s(sec):
     sleep(float(sec))
     robot.drive.stop()
     return "Ok"
+@app.route('/v2/a/<sec>')
+def v2_a(sec):
+    robot.drive.left(0.4)
+    sleep(float(sec))
+    robot.drive.stop()
+    return "Ok"
+@app.route('/v2/d/<sec>')
+def v2_d(sec):
+    robot.drive.right(-0.4)
+    sleep(float(sec))
+    robot.drive.stop()
+    return "Ok"
 
 if __name__ == '__main__':
     robot.miniscreen.display_multiline_text("Axel", font_size=50)
