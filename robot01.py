@@ -72,6 +72,33 @@ def t(msg):
     os.popen(f"gtts-cli '{msg}' -l es | play -t mp3 -")
     return str(robot.battery.capacity)
 
+
+### V2: WORK IN PROGRESS (FOR PYGAME PATH ROUTING)
+@app.route('/v2/rotate-a')
+def v2_rotate_a():
+    robot.drive.left(0.4)
+    sleep(1)
+    robot.stop()
+    return "Ok"
+@app.route('/v2/rotate-d')
+def v2_rotate_d():
+    robot.drive.right(0.4)
+    sleep(1)
+    robot.stop()
+    return "Ok"
+@app.route('/v2/w/<sec>')
+def v2_w(sec: float):
+    robot.drive.forward(0.4)
+    sleep(sec)
+    robot.stop()
+    return "Ok"
+@app.route('/v2/s/<sec>')
+def v2_s(sec: float):
+    robot.drive.forward(-0.4)
+    sleep(sec)
+    robot.stop()
+    return "Ok"
+
 if __name__ == '__main__':
     robot.miniscreen.display_multiline_text("Axel", font_size=50)
     app.run(host='0.0.0.0', port=9999)
