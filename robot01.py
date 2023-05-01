@@ -106,7 +106,7 @@ def v2_a(sec):
     return "Ok"
 @app.route('/v2/d/<sec>')
 def v2_d(sec):
-    robot.drive.right(-0.4)
+    robot.drive.right(0.4)
     sleep(float(sec))
     robot.drive.stop()
     return "Ok"
