@@ -14,6 +14,7 @@ buzzer = Buzzer("D7")
 led1 = LED("D6")
 led2 = LED("D5")
 app = Flask(__name__)
+common_speed = 0.5
 
 @app.route('/l1') ## LIGHTS ON
 def l1():
@@ -29,28 +30,28 @@ def l0():
 
 @app.route('/w') # DRIVE W (FORWARDS)
 def w():
-    robot.drive.forward(0.25)
+    robot.drive.forward(common_speed)
     sleep(1)
     robot.drive.stop()
     return str(robot.battery.capacity)
 
 @app.route('/s') ## DRIVE S (BACKWARDS)
 def s():
-    robot.drive.forward(-0.25)
+    robot.drive.forward(-common_speed)
     sleep(1)
     robot.drive.stop()
     return str(robot.battery.capacity)
 
 @app.route('/a') ## DRIVE A (LEFT)
 def a():
-    robot.drive.left(0.25)
+    robot.drive.left(common_speed)
     sleep(1)
     robot.drive.stop()
     return str(robot.battery.capacity)
 
 @app.route('/d') ## DRIVE D (RIGHT)
 def d():
-    robot.drive.right(0.25)
+    robot.drive.right(common_speed)
     sleep(1)
     robot.drive.stop()
     return str(robot.battery.capacity)
