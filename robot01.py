@@ -77,13 +77,13 @@ def t(msg):
 @app.route('/v2/rotate-a')
 def v2_rotate_a():
     robot.drive.left(0.3)
-    sleep(2)
+    sleep(1)
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/rotate-d')
 def v2_rotate_d():
     robot.drive.right(0.3)
-    sleep(2)
+    sleep(1)
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/w/<sec>')
