@@ -87,15 +87,15 @@ def v2_rotate_d():
     robot.stop()
     return "Ok"
 @app.route('/v2/w/<sec>')
-def v2_w(sec: float):
+def v2_w(sec):
     robot.drive.forward(0.4)
-    sleep(sec)
+    sleep(float(sec))
     robot.stop()
     return "Ok"
 @app.route('/v2/s/<sec>')
-def v2_s(sec: float):
+def v2_s(sec):
     robot.drive.forward(-0.4)
-    sleep(sec)
+    sleep(float(sec))
     robot.stop()
     return "Ok"
 
