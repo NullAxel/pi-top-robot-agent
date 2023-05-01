@@ -90,13 +90,13 @@ def v2_rotate_d():
 def v2_w(sec):
     robot.drive.forward(0.4)
     sleep(float(sec))
-    robot.stop()
+    robot.drive.stop()
     return "Ok"
 @app.route('/v2/s/<sec>')
 def v2_s(sec):
     robot.drive.forward(-0.4)
     sleep(float(sec))
-    robot.stop()
+    robot.drive.stop()
     return "Ok"
 
 if __name__ == '__main__':
