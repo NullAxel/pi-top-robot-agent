@@ -59,13 +59,13 @@ def d():
     robot.drive.stop()
     return str(robot.battery.capacity)
 @app.route('/q') ## STOP DRIVING
-def q():
+def stop():
     robot.drive.stop()
     sleep(1)
     robot.drive.stop()
     return str(robot.battery.capacity)
 @app.route("/b") ## BUZZ HALF A SEC
-def b():
+def buzzer():
     buzzer.on()
     sleep(.5)
     buzzer.off()
