@@ -8,6 +8,7 @@ import pyttsx3
 import os
 import anvil.server
 
+anvil.server.connect(os.environ.get("ANVIL_TOKEN"))
 robot = Pitop()
 # Note: The ports in here are CUSTOM, so please do not make a issue because of this.
 drive = DriveController(left_motor_port="M3", right_motor_port="M2")
@@ -19,12 +20,14 @@ app = Flask(__name__)
 common_speed = 0.5
 
 @app.route('/l1') ## LIGHTS ON
+@anvil.server.callable
 def r01_l1():
     led1.on()
     led2.on()
     return str(robot.battery.capacity)
 
 @app.route('/l0') ## LIGHTS OFF
+@anvil.server.callable
 def r01_l0():
     led1.off()
     led2.off()
@@ -58,12 +61,14 @@ def d():
     robot.drive.stop()
     return str(robot.battery.capacity)
 @app.route('/q') ## STOP DRIVING
+@anvil.server.callable
 def r01_stop():
     robot.drive.stop()
     sleep(1)
     robot.drive.stop()
     return str(robot.battery.capacity)
 @app.route("/b") ## BUZZ HALF A SEC
+@anvil.server.callable
 def r01_buzzer():
     buzzer.on()
     sleep(.5)
@@ -89,24 +94,28 @@ def v2_rotate_d():
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/w/<sec>')
+@anvil.server.callable
 def r01_adelante(sec):
     robot.drive.forward(0.4)
     sleep(float(sec))
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/s/<sec>')
+@anvil.server.callable
 def r01_atras(sec):
     robot.drive.forward(-0.4)
     sleep(float(sec))
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/a/<sec>')
+@anvil.server.callable
 def r01_izquierda(sec):
     robot.drive.left(0.4)
     sleep(float(sec))
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/d/<sec>')
+@anvil.server.callable
 def r01_derecha(sec):
     robot.drive.right(0.4)
     sleep(float(sec))
@@ -115,6 +124,5 @@ def r01_derecha(sec):
 
 if __name__ == '__main__':
     robot.miniscreen.display_multiline_text("Axel", font_size=50)
-    anvil.server.connect(os.environ.get("ANVIL_TOKEN"))
     anvil.server.wait_forever()
     #app.run(host='0.0.0.0', port=9999)
