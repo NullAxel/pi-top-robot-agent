@@ -20,13 +20,13 @@ app = Flask(__name__)
 common_speed = 0.5
 
 @app.route('/l1') ## LIGHTS ON
-def l1():
+def r01_l1():
     led1.on()
     led2.on()
     return str(robot.battery.capacity)
 
 @app.route('/l0') ## LIGHTS OFF
-def l0():
+def r01_l0():
     led1.off()
     led2.off()
     return str(robot.battery.capacity)
@@ -59,13 +59,13 @@ def d():
     robot.drive.stop()
     return str(robot.battery.capacity)
 @app.route('/q') ## STOP DRIVING
-def stop():
+def r01_stop():
     robot.drive.stop()
     sleep(1)
     robot.drive.stop()
     return str(robot.battery.capacity)
 @app.route("/b") ## BUZZ HALF A SEC
-def buzzer():
+def r01_buzzer():
     buzzer.on()
     sleep(.5)
     buzzer.off()
@@ -90,25 +90,25 @@ def v2_rotate_d():
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/w/<sec>')
-def adelante(sec):
+def r01_adelante(sec):
     robot.drive.forward(0.4)
     sleep(float(sec))
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/s/<sec>')
-def atras(sec):
+def r01_atras(sec):
     robot.drive.forward(-0.4)
     sleep(float(sec))
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/a/<sec>')
-def izquierda(sec):
+def r01_izquierda(sec):
     robot.drive.left(0.4)
     sleep(float(sec))
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/d/<sec>')
-def derecha(sec):
+def r01_derecha(sec):
     robot.drive.right(0.4)
     sleep(float(sec))
     robot.drive.stop()
