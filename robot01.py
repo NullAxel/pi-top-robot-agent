@@ -6,6 +6,9 @@ from pitop import Buzzer
 from pitop import LED
 import pyttsx3
 import os
+import anvil.server
+
+anvil.server.connect(os.environ.get("ANVIL_TOKEN"))
 robot = Pitop()
 # Note: The ports in here are CUSTOM, so please do not make a issue because of this.
 drive = DriveController(left_motor_port="M3", right_motor_port="M2")
@@ -87,25 +90,25 @@ def v2_rotate_d():
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/w/<sec>')
-def v2_w(sec):
+def adelante(sec):
     robot.drive.forward(0.4)
     sleep(float(sec))
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/s/<sec>')
-def v2_s(sec):
+def atras(sec):
     robot.drive.forward(-0.4)
     sleep(float(sec))
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/a/<sec>')
-def v2_a(sec):
+def izquierda(sec):
     robot.drive.left(0.4)
     sleep(float(sec))
     robot.drive.stop()
     return "Ok"
 @app.route('/v2/d/<sec>')
-def v2_d(sec):
+def derecha(sec):
     robot.drive.right(0.4)
     sleep(float(sec))
     robot.drive.stop()
@@ -113,4 +116,5 @@ def v2_d(sec):
 
 if __name__ == '__main__':
     robot.miniscreen.display_multiline_text("Axel", font_size=50)
-    app.run(host='0.0.0.0', port=9999)
+    anvil.server.wait_forever()
+    #app.run(host='0.0.0.0', port=9999)
