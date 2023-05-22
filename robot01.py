@@ -8,7 +8,6 @@ import pyttsx3
 import os
 import anvil.server
 
-anvil.server.connect(os.environ.get("ANVIL_TOKEN"))
 robot = Pitop()
 # Note: The ports in here are CUSTOM, so please do not make a issue because of this.
 drive = DriveController(left_motor_port="M3", right_motor_port="M2")
@@ -116,5 +115,6 @@ def r01_derecha(sec):
 
 if __name__ == '__main__':
     robot.miniscreen.display_multiline_text("Axel", font_size=50)
+    anvil.server.connect(os.environ.get("ANVIL_TOKEN"))
     anvil.server.wait_forever()
     #app.run(host='0.0.0.0', port=9999)
