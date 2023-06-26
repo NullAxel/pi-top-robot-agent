@@ -8,7 +8,7 @@ import pyttsx3
 import os
 import anvil.server
 
-anvil.server.connect(os.environ.get("ANVIL_TOKEN"))
+#anvil.server.connect(os.environ.get("ANVIL_TOKEN"))
 robot = Pitop()
 # Note: The ports in here are CUSTOM, so please do not make a issue because of this.
 drive = DriveController(left_motor_port="M3", right_motor_port="M2")
