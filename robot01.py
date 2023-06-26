@@ -124,5 +124,5 @@ def r01_derecha(sec):
 
 if __name__ == '__main__':
     robot.miniscreen.display_multiline_text("Axel", font_size=50)
-    anvil.server.wait_forever()
-    #app.run(host='0.0.0.0', port=9999)
+    #anvil.server.wait_forever()
+    app.run(host='0.0.0.0', port=9999)
